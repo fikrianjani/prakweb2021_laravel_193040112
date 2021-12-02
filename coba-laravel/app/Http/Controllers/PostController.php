@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Models\Post;
 use App\Models\User;
-use App\Models\Category;
 
 class PostController extends Controller
 {
@@ -14,20 +14,22 @@ class PostController extends Controller
         $title = '';
         if (request('category')) {
             $category = Category::firstWhere('slug', request('category'));
-            $title = 'in' . $category->name;
+            $title = ' in ' . $category->name;
         }
 
         if (request('author')) {
             $author = User::firstWhere('username', request('author'));
-            $title = 'by' . $author->name;
+            $title = ' by ' . $author->name;
         }
 
         return view('posts', [
-            "title" => "All Post",
+            "title" => "All Posts",
             "active" => 'posts',
-            "posts" => Post::latest()->filter(request(['search', 'category']))->paginate(7)->withQueryString()
+            "posts" => Post::Latest()->filter(request(['search', 'category', 'author']))
+                ->paginate(5)->withQueryString()
         ]);
     }
+
 
     public function show(Post $post)
     {

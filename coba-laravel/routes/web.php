@@ -1,10 +1,13 @@
 <?php
 
+
 use Illuminate\Support\Facades\Route;
-use App\Models\Post;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\RegisterController;
+
+
 use App\Models\Category;
-use App\Models\User;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,23 +22,26 @@ use App\Models\User;
 
 Route::get('/', function () {
     return view('home', [
-        "title" => "Home"
+        "title" => "Home",
+        'active' => 'categories'
     ]);
 });
 
 Route::get('/about', function () {
     return view('about', [
         "title" => "About",
+        'active' => 'categories',
         "name" => "Fikri Anjani",
-        "nickname" => "MeruNaru",
+        "email" => "fikrianjani123@gmail.com",
         "image" => "image.jpg"
     ]);
 });
 
 
-Route::get('/posts', [PostController::class, 'index']);
 
-Route::get('/posts/{post:slug}', [PostController::class, 'show']);
+
+Route::get('/blog', [PostController::class, 'index']);
+Route::get('blog/{post:slug}', [PostController::class, 'show']);
 
 Route::get('/categories', function () {
     return view('categories', [
@@ -44,3 +50,8 @@ Route::get('/categories', function () {
         'categories' => Category::all()
     ]);
 });
+
+
+Route::get('/login', [LoginController::class, 'index']);
+
+Route::get('/register', [RegisterController::class, 'index']);
