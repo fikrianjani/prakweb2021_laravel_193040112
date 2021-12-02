@@ -1,35 +1,47 @@
-<!doctype html>
-<html lang="en">
+@extends('layouts.main')
 
-<head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+@section('container')
+<div class="row justify-content-center">
+    <div class="col-lg-5">
 
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-uWxY/CJNBR+1zjPWmfnSnVxwRheevXITnMqoEIeG1LJrdI0GlVs/9cVSyPYXdcSF" crossorigin="anonymous">
+        @if(session()->has('success'))
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            {{ session('success') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        @endif
 
-    {{-- Boostrap Icon --}}
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.6.1/font/bootstrap-icons.css">
+        @if(session()->has('loginError '))
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            {{ session('loginError') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        @endif
 
-    {{-- My Style --}}
-    <link rel="stylesheet" href="/css/style.css">
-    <title>WPU Blog | {{ $title }} </title>
-</head>
+        <main class="form-signin">
+            <h1 class="h3 mb-3 fw-normal text-cemter">Please login</h1>
+            <form action="/login" method="post">
+                @csrf
+                <div class="form-floating">
+                    <input type="email" name="email" class="form-control @error('email') is-invalid @enderror" id="email" placeholder="name@example.com" autofocus required value="{{ old('email') }}">
+                    <label for="email">Email address</label>
+                    @error('email')
+                    <div class="invalid-feedback">
+                        {{ $message }}
+                    </div>
+                    @enderror
+                </div>
+                <div class="form-floating">
+                    <input type="password" name="password" class="form-control" id="password" placeholder="Password" required>
+                    <label for="password">Password</label>
+                </div>
 
-<body>
+                <button class="w-100 btn btn-lg btn-primary" type="submit">Login</button>
+            </form>
+            <small class="d-block text-center mt-3">Not registered <a href="/register">Register Now!</a> </small>
+        </main>
 
-    @include('partials.navbar')
-
-    <div class="container mt-4">
-        @yield('container')
     </div>
+</div>
 
-
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-kQtW33rZJAHjgefvhyyzcGF3C5TFyBQBA13V1RKPf4uH+bwyzQxZ6CmMZHmNBEfJ" crossorigin="anonymous"></script>
-
-
-</body>
-
-</html>
+@endsection

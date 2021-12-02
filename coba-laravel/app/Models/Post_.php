@@ -2,21 +2,33 @@
 
 namespace App\Models;
 
+
+
 class Post
 {
-    static $blog_posts = [
+    private static $blog_posts = [
         [
-            "title" => "Judul Post Pertama",
+            "title" => "Judu Post Pertama",
             "slug" => "judul-post-pertama",
-            "author" => "Fikri Anjani",
-            "body" => "Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta culpa nesciunt quaerat doloribus debitis delectus, sint beatae deleniti. Iure itaque quod rerum illo eligendi veniam suscipit obcaecati laborum? Expedita distinctio impedit maxime error nisi harum vitae tempora voluptate aliquid eos libero labore esse assumenda eius, soluta et tenetur, minima recusandae magnam! Aliquid non officiis quia harum provident autem impedit optio, accusamus totam. Laboriosam, impedit. Dolores quo, ab incidunt, inventore ut recusandae animi neque quae, ipsam alias asperiores minima? Vero, quae."
+            "author" => "Fikri",
+            "body" =>  "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officia 
+        voluptas dolore iste corrupti suscipit veniam explicabo quis quia quae distinctio, non ex nul
+        la tempora eos ad consequatur cupiditate velit aperiam quos officiis iusto ea, numquam sit. Perferendis
+        aliquam repellat veniam quos at voluptate quam, corrupti minus eius! Sint voluptatum rem quae obcaecati 
+        nesciunt illum quasi quo similique laborum aspernatur architecto quis, cum porro dolorum expedita magnam.
+        Commodi, quasi, maxime animi a ad soluta, mollitia doloribus aliquam sapiente aspernatur quos eum."
         ],
         [
             "title" => "Judul Post Kedua",
             "slug" => "judul-post-kedua",
-            "author" => "Meru Naru",
-            "body" => "Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta culpa nesciunt quaerat doloribus debitis delectus, sint beatae deleniti. Iure itaque quod rerum illo eligendi veniam suscipit obcaecati laborum? Expedita distinctio impedit maxime error nisi harum vitae tempora voluptate aliquid eos libero labore esse assumenda eius, soluta et tenetur, minima recusandae magnam! Aliquid non officiis quia harum provident autem impedit optio, accusamus totam. Laboriosam, impedit. Dolores quo, ab incidunt, inventore ut recusandae animi neque quae, ipsam alias asperiores minima? Vero, quae."
+            "author" => "Meru",
+            "body" =>  "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officia 
+            voluptas dolore iste corrupti suscipit veniam explicabo quis quia quae distinctio, non ex nul
+            la tempora eos ad consequatur cupiditate velit aperiam quos officiis iusto ea, numquam sit. Perferendis
+            aliquam repellat veniam quos at voluptate quam, corrupti minus eius! Sint voluptatum rem quae obcaecati 
+            ."
         ]
+
     ];
 
     public static function all()
@@ -27,12 +39,6 @@ class Post
     public static function find($slug)
     {
         $posts = static::all();
-        // $post = [];
-        // foreach ($posts as $p) {
-        //     if ($p["slug"] === $slug) {
-        //         $post = $p;
-        //     }
-        // }
-        return $posts->firstwhere('slug', $slug);
+        return $posts->firstWhere('slug', $slug);
     }
 }
