@@ -52,6 +52,7 @@ class Post extends Model
     {
         return 'slug';
     }
+
     public function sluggable(): array
     {
         return [
